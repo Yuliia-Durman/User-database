@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rejestracja{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="h3 mb-3 mt-5 font-weight-normal text-center">Załóż konto</h1>
+    {% form_theme registrationForm 'bootstrap_4_layout.html.twig' %}
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email, {'attr' : {'placeholder' : 'forexample@wp.pl' }} ) }}
+        {{ form_row(registrationForm.name) }}
+        {{ form_row(registrationForm.surname) }}
+        {{ form_row(registrationForm.number, {'attr' : {'placeholder' : '555555555' }} ) }}
+        {{ form_row(registrationForm.typeUser) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Hasło'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn btn-primary mb-5">Załóż konto</button>
+    {{ form_end(registrationForm) }}
+</div>
+{% endblock %}

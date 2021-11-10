@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Strona główna{% endblock %}
+
+{% block body %}
+    <div class="container mb-5 pt-5 pb-5">
+    {% for message in app.flashes('succes') %}
+      <div class="alert alert-succes">
+        {{ message }}
+      </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+      <div class="alert alert-danger">
+        {{message}}
+      </div>
+    {% endfor %}
+        
+        {% if app.user %}
+            <div class="card-body">
+                <h5 class="card-title">Jesteś zalogowany</h5>
+                <a href="register" class="btn btn-primary">Załóż konto nowego użytkownika</a>
+            </div>
+        {% endif %}
+
+        <div class="card-header">
+            Dane użytrowników
+        </div>
+        <div class="container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Imię</th>
+                <th scope="col">Nazwisko</th>
+                <th scope="col">Email</th>
+                <th scope="col">Numer telefonu</th>
+                <th scope="col">Typ użytkownika</th>
+              </tr>
+            </thead>
+           
+            <tbody>              
+              {% for user in latestUsers %}
+                <tr>
+                    <th scope="row">{{ user.id }}</th>
+                    <th scope=>{{ user.name }}</th>
+                    <th scope=>{{ user.surname }}</th>
+                    <th scope=>{{ user.email }}</th>
+                    <th scope=>{{ user.number }}</th>
+                    <th scope=>{{ user.typeUser }}
+                    </th>
+                    {% if app.user %}
+                      <th scope=> <a href="{{ path('edit_database', {'id':user.id })}}" class="btn btn-primary">Edytuj</a></th>
+                      <th scope=> <a href="{{ path('remove_database', {'id': user.id })}}" class="btn btn-primary">Usuń</a></th>
+                    {% endif %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+    </section>
+{% endblock %}

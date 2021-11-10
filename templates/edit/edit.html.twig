@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Zmiana danych{% endblock %}
+
+{% block body %}
+
+<div class="container">
+  <div>
+    <h1 class="text-center mb-4 h4">Wprowadź nowe dane</h1>
+      {% form_theme form 'bootstrap_4_layout.html.twig' %}
+        {{ form_start(form) }}
+          {% if (id <0 ) %} {{ form_row(form.id, {
+              value : id
+          }) }}
+          {% endif %}
+          {{ form_row(form.name, {
+              value : name
+          }) }}
+          {{ form_row(form.surname, {
+              value : surname
+          }) }}
+          {{ form_row(form.email, {
+              value : email
+          }) }}
+          {{ form_row(form.number, {
+              value : number
+          }) }}
+          {% if (type == 'indywidualny') %}
+          {{ form_row(form.typeUser, {
+              value : 'indywidualny'
+          }) }}
+          {% else %}
+          {{ type }}
+          {{ form_row(form.typeUser, {
+              value : type
+          }) }}
+          {% endif %}
+          
+          {{ form_row(form.password, {
+              value : password,
+              'attr' : {'placeholder' : 'wprowadź nowe hasło' }} ) }}
+          
+          <button type="submit" class="btn btn-primary mb-5 mt-3">Zapisz zmany</button>
+          
+        {{ form_end(form) }}
+        
+  </div>
+</div>
+{% endblock %}
+      
